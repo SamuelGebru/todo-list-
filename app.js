@@ -9,14 +9,14 @@ app.use(bodyParser.urlencoded({
 
 app.use(express.static('public')); // specify the location of the public folder
 
-let items = ["Buy food", "Cook food", "Eat food"];
-let workItems = [];
+const items = ["Buy food", "Cook food", "Eat food"];
+const workItems = [];
 
 app.set('view engine', 'ejs');
 
 app.get('/', function(req, res) {
 
-  let day = date();
+  const day = date.getDay();
 
   res.render("list", {
     listTitle: day, newListItems: items
@@ -25,7 +25,7 @@ app.get('/', function(req, res) {
 
 app.post('/', function(req, res) {
   console.log(req.body);
-  let item = req.body.toDoList;
+  const item = req.body.toDoList;
 
   if (req.body.list === "Work") {
     workItems.push(item)
